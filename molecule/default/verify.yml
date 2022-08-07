@@ -3,8 +3,29 @@
 
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
-    - name: Example assertion
+    - name: tmux stat
+      ansible.builtin.stat:
+        path: /usr/bin/tmux
+      register: tmux
+    - name: tmuxinator stat
+      ansible.builtin.stat:
+        path: /usr/bin/tmuxinator
+      register: tmuxinator
+    - name: tmux_conf stat
+      ansible.builtin.stat:
+        path: "{{ ansible_user_dir }}/.tmux.conf"
+      register: tmux_conf
+
+    - name: Make sure tmux exists
       ansible.builtin.assert:
-        that: true
+        that: tmux.stat.exists
+
+    - name: Make sure tmuxinator exists
+      ansible.builtin.assert:
+        that: tmuxinator.stat.exists
+
+    - name: Make sure tmux.conf exists
+      ansible.builtin.assert:
+        that: tmux_conf.stat.exists
