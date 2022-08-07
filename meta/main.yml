@@ -1,0 +1,19 @@
+---
+
+galaxy_info:
+  author: Tim McFadden
+  description: An ansible role to install and configure tmux
+  company: ""
+  role_name: tmux
+  namespace: mtik00
+  issue_tracker_url: https://github.com/mtik00/ansible-role-tmux/issues
+  license: MIT
+  min_ansible_version: "2.1"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags: []
+
+dependencies: []
